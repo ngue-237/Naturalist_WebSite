@@ -44,7 +44,7 @@ INSERT INTO `animal` (`id_animal`, `type_animal`) VALUES
 (26, 'chÃ¨vre'),
 (31, 'souris');
 
--- --------------------------------------------------------
+-- -------------------------------------------------------
 
 --
 -- Structure de la table `cathegorie`
