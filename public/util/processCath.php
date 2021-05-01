@@ -75,7 +75,7 @@ if(isset($_POST['modifierCath'])){
     if(empty($_POST['inputDesignationCath']) || empty($_POST['typeAnimal']) || empty($_POST['idCath'])){
         $_SESSION['message'] ="some informations required!";
         $_SESSION['msg_type'] = "warning";
-        header("location:../../views/backend/cathegorieProd.php");
+        header("location:../../views/backend/cathegorieProd.php?page=1");
     }else{
         $result = $cathProdCtrl->unique(test_input($_POST['inputDesignationCath']));
         if($result == 1){
@@ -93,11 +93,52 @@ if(isset($_POST['modifierCath'])){
             $cathProd = new CathProd($typeAnimalMod,$designationCathMod);
             $cathProdCtrl->updateCath($cathProd, $idCath);
 
-            header("location:../../views/backend/cathegorieProd.php");
+            header("location:../../views/backend/cathegorieProd.php?page=1");
         }
         
     }
     
+}
+
+$output =$result= "";
+if(isset($_GET['query'])){
+        $search = $_GET['query'];
+        $result = $cathProdCtrl->liveSearch($search);
+}
+else{
+    $result = $cathProdCtrl->getAllCathProd();
+}
+
+if(count($result)>0){
+    $output ="<thead>
+    <th scope='col'></th>
+    <th scope='col'>Désignation</th>
+    <th scope='col'>TYPE ANIMAL</th>
+    <th scope='col'>Action</th>
+    </thead>
+    <tbody>";
+    $i =1;
+    foreach($result as $result){
+        $output .="
+        <tr>
+        <td>".$i++."</td>
+                <td> ".$result['designation']."</td>
+                <td> ".$result['type_animal']."</td>
+                <td>
+                    <a href='../../public/util/processCath.php?delete=".$result['id_cath']."'>
+                        <i class=far fa-edit'></i>
+                    </a>
+                    <a href='../../public/util/processCath.php?delete=".$result['id_cath']."'>
+                        <i class='fas fa-trash-alt' style='color:#33b35a'></i>  
+                    </a>
+                </td>
+        </tr>
+        ";    
+    }
+    $output .= "</tbody>";
+    echo $output;
+}else{
+    echo "<h3>Not record found</h3>";
 }
 
 
