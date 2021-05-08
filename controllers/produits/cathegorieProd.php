@@ -40,7 +40,7 @@ class CathProdController{
         $conn = config :: getConnexion();
         $limit = 2;
         $page = isset($_GET['page'])? $_GET['page'] : 1;
-        // var_dump($page);
+         var_dump($_GET['page']);
         $start = ($page - 1) * $limit;
         $sql = "SELECT * FROM cathegorie LIMIT $start, $limit";
         try {

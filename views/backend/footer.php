@@ -2,7 +2,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-            <p> Copyright&copy, 2017-<?php echo date("Y");?></p>
+            <p>Copyright © <?php echo date("Y");?><a href="#">&nbsp;Naturalists</a>. All Rights Reserved</p>
             </div>
             <div class="col-sm-6 text-right">
               <p>Design by <a href="./index.php" class="external">Naturalist</a></p>

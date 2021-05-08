@@ -14,7 +14,7 @@ session_start();
           <div class="row">
             <div class="col-sm-3">
               <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active"><a href="produits.html">Produits</a></li>
               </ul>
             </div>

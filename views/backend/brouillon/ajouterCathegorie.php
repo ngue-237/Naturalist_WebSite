@@ -43,13 +43,13 @@
             <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+          <div class="sidenav-header-logo"><a href="index.php" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li><a href="index.html"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="index.php"> <i class="icon-home"></i>Home</a></li>
             <li><a href="forms.html"> <i class="icon-form"></i>Forms</a></li>
             <li ><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fab fa-product-hunt"></i></i>Produit </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -84,7 +84,7 @@
         <nav class="navbar">
           <div class="container-fluid">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.php" class="navbar-brand">
                   <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div></a></div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
@@ -154,7 +154,7 @@
           <div class="row">
             <div class="col-sm-3">
               <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active"><a href="produits.html">Produits</a></li>
               </ul>
             </div>

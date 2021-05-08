@@ -9,28 +9,11 @@ $animalProd = new AnimalProdController();
 $prod = new ProduitCtrl();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/plugins.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
-  <title>products details</title>
-</head>
-
-<body class="elevet-enable">
-  <div class="site-wrapper">
-  <?php
-      require './headerContent.php';
-    ?>
+<?php require './header.php'; ?>
     <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
       <div class="container">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Product Details</li>
         </ol>
       </div>
@@ -210,27 +193,12 @@ $prod = new ProduitCtrl();
                             <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
                           </div>
                         </div>
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="text" id="email" class="form-control">
-                          </div>
-                        </div>
-                        <div class="col-lg-4">
-                          <div class="form-group">
-                            <label for="website">Website</label>
-                            <input type="text" id="website" class="form-control">
-                          </div>
                         </div>
                         <div class="col-lg-4">
                           <div class="submit-btn">
-                            <a href="#" class="btn btn-black">Post Comment</a>
+                          <button type="submit">
+                          <a href="#" class="btn btn-black">Ajouter</a>
+                          </button>
                           </div>
                         </div>
                       </div>
@@ -273,7 +241,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -291,7 +259,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -309,7 +277,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -327,7 +295,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -345,7 +313,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -383,7 +351,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -401,7 +369,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -419,7 +387,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -437,7 +405,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -455,7 +423,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -473,7 +441,7 @@ $prod = new ProduitCtrl();
                       <span>$300</span>
                     </div>
                     <div class="btn-block">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded">Add to Cart</a>
                     </div>
                   </div>
                 </div>
@@ -484,43 +452,4 @@ $prod = new ProduitCtrl();
         </div>
       </section>
     </main>
-
-
-    <?php include './footerContent.php'; ?>
-  </div>
-  <script src="js/plugins.js"></script>
-  <script src="js/ajax-mail.js"></script>
-  <script src="js/custom.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-  $("#search").keyup(function () {
-    let searchText = $(this).val();
-    if (searchText != "") {
-      $.ajax({
-        url: "../../public/util/processProdFront.php",
-        method: "post",
-        data: {
-          query: searchText,
-        },
-        success: function (response) {
-          $("#show-list").html(response);
-          $(".list-group").css("display", "block");
-        },
-      });
-    } else {
-      $("#show-list").html("");
-    }
-  });
-  // Set searched text in input field on click of search button
-  $(document).on("click", "a", function () {
-    $("#search").val($(this).text());
-    $("#show-list").html("");
-  });
-});
-    </script>
-</body>
-
-
-<!-- Mirrored from demo.hasthemes.com/petmark-v5/petmark/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Apr 2021 06:25:31 GMT -->
-
-</html>
+    <?php require 'footer.php'; ?>

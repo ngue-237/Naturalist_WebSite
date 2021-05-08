@@ -12,6 +12,7 @@ if(isset($_POST['action'])){
         $cath = implode("','", $_POST['cath']);
         $sql .= "AND  cathegorie IN('".$cath."')";
     }
+    
 
     $result = $conn->query($sql);
     $rows = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -39,7 +40,7 @@ if(isset($_POST['action'])){
                   <span>'.$row['prix_achat'].'</span>
                 </div>
                 <div class="btn-block grid-btn">
-                  <a href="cart.html" class="btn btn-outlined btn-rounded btn-mid">Add to Cart</a>
+                  <a href="cart.php" class="btn btn-outlined btn-rounded btn-mid">Add to Cart</a>
                 </div>
                 
               </div>
@@ -56,7 +57,7 @@ if(isset($_POST['action'])){
 if (isset($_POST['query'])) {
   $inpText = $_POST['query'];
   $lim = 3;
-  $sql = "SELECT designation, id_produit FROM produits WHERE designation LIKE :dsign LIMIT $lim";
+  $sql = "SELECT designation, id_produit FROM produits WHERE designation OR marque LIKE :dsign LIMIT $lim";
   $stmt = $conn->prepare($sql);
   $stmt->execute(['dsign' => '%' . $inpText . '%']);
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

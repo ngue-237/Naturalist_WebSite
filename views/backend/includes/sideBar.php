@@ -7,13 +7,13 @@
             <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+          <div class="sidenav-header-logo"><a href="index.php" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li><a href="index.html"> <i class="icon-home"></i>Home</a></li>
+            <li><a href="index.php"> <i class="icon-home"></i>Home</a></li>
             <li><a href="forms.html"> <i class="icon-form"></i>Forms</a></li>
             <li ><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fab fa-product-hunt"></i></i>Produit </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

@@ -14,25 +14,7 @@ $next = $page + 1;
 $previous = $page-1;  
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/plugins.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <title>Produits</title>
-</head>
-
-<body class="">
-  <div class="site-wrapper">
-    <?php
-      require './headerContent.php';
-    ?>
+<?php require './header.php'; ?>
     <div class="modal fade modal-quick-view" id="quickModal" tabindex="-1" role="dialog" aria-labelledby="quickModal"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -48,31 +30,6 @@ $previous = $page-1;
                   <!-- Zoomable IMage -->
                   <img id="zoom_03" src="image/product/product-details/product-details-1.jpg"
                     data-zoom-image="image/product/product-details/product-details-1.jpg" alt="" />
-
-                  <!-- Product Gallery with Slick Slider -->
-                  <div id="product-view-gallery" class="elevate-gallery">
-                    <!-- Slick Single -->
-                    <a href="#" class="gallary-item" data-image="image/product/product-details/product-details-1.jpg"
-                      data-zoom-image="image/product/product-details/product-details-1.jpg">
-                      <img src="image/product/product-details/product-details-1.jpg" alt="" />
-                    </a>
-                    <!-- Slick Single -->
-                    <a href="#" class="gallary-item" data-image="image/product/product-details/product-details-2.jpg"
-                      data-zoom-image="image/product/product-details/product-details-2.jpg">
-                      <img src="image/product/product-details/product-details-2.jpg" alt="" />
-                    </a>
-                    <!-- Slick Single -->
-                    <a href="#" class="gallary-item" data-image="image/product/product-details/product-details-3.jpg"
-                      data-zoom-image="image/product/product-details/product-details-3.jpg">
-                      <img src="image/product/product-details/product-details-3.jpg" alt="" />
-                    </a>
-                    <!-- Slick Single -->
-                    <a href="#" class="gallary-item" data-image="image/product/product-details/product-details-4.jpg"
-                      data-zoom-image="image/product/product-details/product-details-4.jpg">
-                      <img src="image/product/product-details/product-details-4.jpg" alt="" />
-                    </a>
-
-                  </div>
                 </div>
               </div>
 
@@ -130,8 +87,8 @@ $previous = $page-1;
     <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
       <div class="container">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop</li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Produits</li>
         </ol>
       </div>
     </nav>
@@ -165,7 +122,8 @@ $previous = $page-1;
                     <ul class="product-btns">
                       <li><a href="wishlist.html"><i class="ion-ios-heart-outline"></i></a></li>
                       <li><a href="compare.html"><i class="ion-ios-shuffle"></i></a></li>
-                      <li><a href="#" data-toggle="modal" data-target="#quickModal"><i class="ion-ios-search"></i></a>
+                      <li>
+                        <a href="./shop-left-sidebar.php?page=1?idProdMod<?= $produit['id_produit'];?>" data-toggle="modal" data-target="#quickModal"><i class="ion-ios-search"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -176,7 +134,7 @@ $previous = $page-1;
                       <span><?= $produit['prix_achat'];?></span>
                     </div>
                     <div class="btn-block grid-btn">
-                      <a href="cart.html" class="btn btn-outlined btn-rounded btn-mid">Add to Cart</a>
+                      <a href="cart.php" class="btn btn-outlined btn-rounded btn-mid">Add to Cart</a>
                     </div>
                     
                   </div>
@@ -266,57 +224,9 @@ $previous = $page-1;
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.product_check').click(function(){
-        var action = 'data';
-        var marq = get_filter_text('marq');
-        var cath = get_filter_text('cath');
-        $.ajax({
-          url:'../../public/util/processProdFront.php',
-          method:'post',
-          data:{action:action, marq:marq,cath:cath},
-          success:function(response){
-            $('#result').html(response);
-          }
-        })
-      })
-        function get_filter_text(text_id){
-          var filterData = [];
-          $('#'+text_id+':checked').each(function(){
-            filterData.push($(this).val());
-          });
-          return  filterData;
-        }
-    })
+  <script src="./js/filterSystem.js" type="text/javascript">
   </script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-  $("#search").keyup(function () {
-    let searchText = $(this).val();
-    if (searchText != "") {
-      $.ajax({
-        url: "../../public/util/processProdFront.php",
-        method: "post",
-        data: {
-          query: searchText,
-        },
-        success: function (response) {
-          $("#show-list").html(response);
-          $(".list-group").css("display", "block");
-        },
-      });
-    } else {
-      $("#show-list").html("");
-    }
-  });
-  // Set searched text in input field on click of search button
-  $(document).on("click", "a", function () {
-    $("#search").val($(this).text());
-    $("#show-list").html("");
-  });
-});
-</script>
+  <script type="text/javascript" src="./js/autocompleteSearch.js"></script>
 </body>
 
 

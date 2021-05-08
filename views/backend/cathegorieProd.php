@@ -22,7 +22,7 @@ $previous = $page-1;
           <div class="row">
             <div class="col-sm-3">
               <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active">Cathégories</li>
               </ul>
             </div>

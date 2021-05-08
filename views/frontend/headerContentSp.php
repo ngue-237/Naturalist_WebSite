@@ -37,7 +37,7 @@
               <!-- Template Logo -->
               <div class="col-lg-3 col-md-12 col-sm-4">
                 <div class="site-brand  text-center text-lg-left">
-                  <a href="index.html" class="brand-image">
+                  <a href="index.php" class="brand-image">
                     <img src="image/main-logo.png" alt="">
                   </a>
                 </div>
@@ -79,7 +79,7 @@
                     <p>CALL US NOW: <i class="icon ion-ios-telephone"></i><span class="font-weight-mid">+216 52 73 93 85</span></p>
                   </div>
                   <ul class="header-links">
-                    <li><a href="cart.html"><i class="fas fa-car-alt"></i> Track Your Order</a></li>
+                    <li><a href="cart.php"><i class="fas fa-car-alt"></i> Track Your Order</a></li>
                     <li><a href="login-register.html"><i class="fas fa-user"></i> Register or Sign in</a></li>
                   </ul>
                 </div>
@@ -203,10 +203,10 @@
                   <!-- Mainmenu Start -->
                   <ul class="mainmenu">
                     <li class="mainmenu__item menu-item-has-children ">
-                      <a href="index.html" class="mainmenu__link">Home</a>
+                      <a href="index.php" class="mainmenu__link">Home</a>
                       <ul class="sub-menu">
                         <li>
-                          <a href="index.html">Home 1</a>
+                          <a href="index.php">Home 1</a>
                         </li>
                         <li>
                           <a href="index-2.html">Home 2</a>
@@ -254,7 +254,7 @@
                           <a href="404.html">404</a>
                         </li>
                         <li>
-                          <a href="cart.html">Cart</a>
+                          <a href="cart.php">Cart</a>
                         </li>
                         <li>
                           <a href="checkout.html">Checkout</a>
@@ -392,7 +392,7 @@
                         </li>
                         <li class="single-cart">
                           <div class="cart-buttons">
-                            <a href="cart.html" class="btn btn-outlined">View Cart</a>
+                            <a href="cart.php" class="btn btn-outlined">View Cart</a>
                             <a href="checkout.html" class="btn btn-outlined">Check Out</a>
                           </div>
                         </li>
@@ -421,7 +421,7 @@
             <div class="row align-items-center">
               <div class="col-lg-3">
                 <!-- Sticky Logo Start -->
-                <a class="sticky-logo" href="index.html">
+                <a class="sticky-logo" href="index.php">
                   <img src="image/main-logo.png" alt="logo">
                 </a>
                 <!-- Sticky Logo End -->
@@ -431,10 +431,10 @@
                 <nav class="sticky-navigation">
                   <ul class="mainmenu sticky-menu">
                     <li class="mainmenu__item menu-item-has-children sticky-has-child ">
-                      <a href="index.html" class="mainmenu__link">Home</a>
+                      <a href="index.php" class="mainmenu__link">Home</a>
                       <ul class="sub-menu">
                         <li>
-                          <a href="index.html">Home 1</a>
+                          <a href="index.php">Home 1</a>
                         </li>
                         <li>
                           <a href="index-2.html">Home 2</a>
@@ -486,7 +486,7 @@
                           <a href="404.html">404</a>
                         </li>
                         <li>
-                          <a href="cart.html">Cart</a>
+                          <a href="cart.php">Cart</a>
                         </li>
                         <li>
                           <a href="checkout.html">Checkout</a>

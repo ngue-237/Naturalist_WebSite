@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-sm-3">
             <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">Animaux</li>
             </ul>
           </div>
@@ -133,7 +133,7 @@
                 console.log(search);
                 $.ajax({
                     url:'../../public/util/processAnimaux.php',
-                    method:'post',
+                    method:'get',
                     data:{query:search},
                     success:function(response){
                         $("#table_data").html(response);

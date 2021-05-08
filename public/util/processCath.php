@@ -21,13 +21,13 @@ if(isset($_POST['ajouterCath'])){
     if(empty($_POST['inputDesignationCath'])){
         $_SESSION['message'] ="some informations required!";
         $_SESSION['msg_type'] = "warning";
-        header("location:../../views/backend/cathegorieProd.php");
+        header("location:../../views/backend/cathegorieProd.php?page=1");
     }else {
         $result = $cathProdCtrl->unique(test_input($_POST['inputDesignationCath']));
         if($result==1){
             $_SESSION['message'] ="this record already exist!";
             $_SESSION['msg_type'] = "warning";
-            header("location:../../views/backend/cathegorieProd.php"); 
+            header("location:../../views/backend/cathegorieProd.php?page=1"); 
         }else{
             $designationCathAjt = test_input($_POST['inputDesignationCath']);
             $typeAnimalAjt = test_input($_POST['typeAnimal']);
@@ -38,7 +38,7 @@ if(isset($_POST['ajouterCath'])){
             $_SESSION['message'] ="record has been saved!";
             $_SESSION['msg_type'] = "success";
         
-            header("location:../../views/backend/cathegorieProd.php");
+            header("location:../../views/backend/cathegorieProd.php?page=1");
         }
         
 
@@ -53,13 +53,14 @@ if(isset($_GET['delete']))
     $cathProdCtrl->deleteCath($idCath);
     $_SESSION['message'] = "record has been deleted !";
     $_SESSION['msg_type'] = "danger";
-    header("location:../../views/backend/cathegorieProd.php");
+    header("location:../../views/backend/cathegorieProd.php?page=1");
 }
 
 if(isset($_GET['edit'])){
     $id = $_GET['edit'];
     $result = $cathProdCtrl->getCathByID($id);
     $update = true;
+    $page = 1;
     foreach($result as $row){
         $designationCath = $row['designation'];
         $typeAnimal = $row['type_animal'];
@@ -67,7 +68,7 @@ if(isset($_GET['edit'])){
     }
 
     header("location:../../views/backend/cathegorieProd.php?designationCath=".$designationCath."&typeAnimal="
-    .$typeAnimal."&update=".$update."&idCath=".$idCath."");
+    .$typeAnimal."&update=".$update."&idCath=".$idCath."&page=".$page."");
 }
 
 if(isset($_POST['modifierCath'])){
@@ -77,12 +78,7 @@ if(isset($_POST['modifierCath'])){
         $_SESSION['msg_type'] = "warning";
         header("location:../../views/backend/cathegorieProd.php?page=1");
     }else{
-        $result = $cathProdCtrl->unique(test_input($_POST['inputDesignationCath']));
-        if($result == 1){
-            $_SESSION['message'] ="this record already exist!";
-            $_SESSION['msg_type'] = "warning";
-            header("location:../../views/backend/cathegorieProd.php");
-        }else{
+        
             $designationCathMod = test_input($_POST['inputDesignationCath']);
             $typeAnimalMod = test_input($_POST['typeAnimal']);
             $idCath = test_input($_POST['idCath']);
@@ -94,7 +90,7 @@ if(isset($_POST['modifierCath'])){
             $cathProdCtrl->updateCath($cathProd, $idCath);
 
             header("location:../../views/backend/cathegorieProd.php?page=1");
-        }
+        
         
     }
     

@@ -19,12 +19,12 @@
           <div class="row">
             <div class="col-sm-3">
               <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active"><a href="produits.html">Produits</a></li>
               </ul>
             </div>
-            <div class="col-sm-9">
-              
+            <div class="col-sm-9 d-flex justify-content-end center" >
+            <a class="navbar-brand btn btn-primary"  target="_blank" href="print.php">Imprimer</a>
             </div>
         </div>          
         </div>
@@ -32,8 +32,6 @@
       <section>
         <div>
         <?php
-        // var_dump($_SESSION['message']);
-        // die("je suis là");
           if(isset($_SESSION['message'])):
         ?>
       <div class="alert-msg alert alert-<?=$_SESSION['msg_type'];?>">

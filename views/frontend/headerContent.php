@@ -76,7 +76,7 @@
                                                 class="font-weight-mid">+216 52 73 93 85</span></p>
                                     </div>
                                     <ul class="header-links">
-                                        <li><a href="cart.html"><i class="fas fa-car-alt"></i> Commandes</a></li>
+                                        <li><a href="cart.php"><i class="fas fa-car-alt"></i> Commandes</a></li>
                                         <li><a href="login-register.html"><i class="fas fa-user"></i> Se connecter</a>
                                         </li>
                                     </ul>
@@ -145,7 +145,7 @@
                                         <li class="mainmenu__item ">
                                             <a href="e-consulting.php" class="mainmenu__link">e-consultation</a>
                                         </li>
-                                        <li class="mainmenu__item ">
+                                        <li class="mainmenu__item">
                                             <a href="portfolio.html" class="mainmenu__link">Forum</a>
                                         </li>
                                         <li class="mainmenu__item">
@@ -219,7 +219,7 @@
                                                 </li>
                                                 <li class="single-cart">
                                                     <div class="cart-buttons">
-                                                        <a href="cart.html" class="btn btn-outlined">View Cart</a>
+                                                        <a href="cart.php" class="btn btn-outlined">View Cart</a>
                                                         <a href="checkout.html" class="btn btn-outlined">Check Out</a>
                                                     </div>
                                                 </li>
