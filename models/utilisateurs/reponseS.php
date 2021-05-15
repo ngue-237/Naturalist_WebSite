@@ -1,4 +1,5 @@
 <?PHP
+
 class Rsujet
 {
 	private $id;

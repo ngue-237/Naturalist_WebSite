@@ -2,9 +2,11 @@
 include '../../controllers/produits/cathegorieProd.php';
 include '../../controllers/produits/animalProdController.php';
 include '../../controllers/produits/produitsController.php';
+include_once '../../controllers/produits/comprodC.php';
 
 $cathProd = new CathProdController();
 $animalProd = new AnimalProdController();
+$idProdCom="";
 
 $prod = new ProduitCtrl();
 ?>
@@ -40,8 +42,8 @@ $prod = new ProduitCtrl();
             <div class="col-md-6 mt-5 mt-md-0">
               <?php 
           $idProd = $_GET['idProd'];
-          $produit = $prod->getProdById($idProd);
           foreach($produit as $item):
+            $idProdCom = $item['id_produit'];
           ?>
               <div class="description-block">
                 <div class="header-block">
@@ -142,6 +144,7 @@ $prod = new ProduitCtrl();
                 $idProd = $_GET['idProd'];
                 $produit = $prod->getProdById($idProd);
                 foreach($produit as $item):
+                  
               ?>
                 <article>
                   <h2 class="d-none sr-only">tab article</h2>
@@ -152,58 +155,89 @@ $prod = new ProduitCtrl();
                 <?php endforeach; ?>
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="review-wrapper">
-                  <h2 class="title-lg mb--20">1 REVIEW FOR AUCTOR GRAVIDA ENIM</h2>
-                  <div class="review-comment mb--20">
-                    <div class="avatar">
-                      <img src="image/icon-logo/author-logo.png" alt="">
-                    </div>
-                    <div class="text">
-                      <div class="rating-widget mb--15">
-                        <span class="single-rating"><i class="fas fa-star"></i></span>
-                        <span class="single-rating"><i class="fas fa-star"></i></span>
-                        <span class="single-rating"><i class="fas fa-star"></i></span>
-                        <span class="single-rating"><i class="fas fa-star-half-alt"></i></span>
-                        <span class="single-rating"><i class="far fa-star"></i></span>
-                      </div>
-                      <h6 class="author">ADMIN – <span class="font-weight-400">March 23, 2015</span> </h6>
-                      <p>Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.</p>
-                    </div>
-                  </div>
-                  <h2 class="title-lg mb--20 pt--15">ADD A REVIEW</h2>
-                  <div class="rating-row pt-2">
-                    <p class="d-block">Your Rating</p>
-                    <span class="rating-widget-block">
-                      <input type="radio" name="star" id="star1">
-                      <label for="star1"></label>
-                      <input type="radio" name="star" id="star2">
-                      <label for="star2"></label>
-                      <input type="radio" name="star" id="star3">
-                      <label for="star3"></label>
-                      <input type="radio" name="star" id="star4">
-                      <label for="star4"></label>
-                      <input type="radio" name="star" id="star5">
-                      <label for="star5"></label>
-                    </span>
-                    <form action="https://demo.hasthemes.com/petmark-v5/petmark/" class="mt--15 site-form ">
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <label for="message">Comment</label>
-                            <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
-                          </div>
-                        </div>
-                        </div>
-                        <div class="col-lg-4">
-                          <div class="submit-btn">
-                          <button type="submit">
-                          <a href="#" class="btn btn-black">Ajouter</a>
-                          </button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+              <div class="review-wrapper">
+       
+       <h2 class="title-lg mb--20">1 REVIEW FOR AUCTOR GRAVIDA ENIM</h2>
+       <?php
+             $comprodCtrl = new comprodC();
+             $rows = $comprodCtrl->getAllComprod();
+             $i=1;
+             foreach($rows as $row) :
+           ?>
+       <div class="review-comment mb--20">
+         <div class="avatar">
+           <img src="image/icon-logo/author-logo.png" alt="">
+         </div>
+         <div class="text">
+           <div class="rating-widget mb--15">
+             <span class="single-rating"><i class="fas fa-star"></i></span>
+             <span class="single-rating"><i class="fas fa-star"></i></span>
+             <span class="single-rating"><i class="fas fa-star"></i></span>
+             <span class="single-rating"><i class="fas fa-star-half-alt"></i></span>
+             <span class="single-rating"><i class="far fa-star"></i></span>
+           </div>
+           
+           <h6 class="author"><?php echo $row['nom'] ?> –  <span class="font-weight-400"><?php echo $row['date-com'] ?></span> </h6>
+           <p><?php echo $row['comment'] ?></p>
+         </div>
+       </div>
+        <?php endforeach ?>
+       <h2 class="title-lg mb--20 pt--15">ADD A REVIEW</h2>
+       <form action="../../public/util/processComprod.php" class="form-size" method="post" > 
+       <div class="rating-row pt-2">
+         <p class="d-block">Your Rating</p>
+         <span class="rating-widget-block">
+           <input type="radio" name="star" id="star1">
+           <label for="star1"></label>
+           <input type="radio" name="star" id="star2">
+           <label for="star2"></label>
+           <input type="radio" name="star" id="star3">
+           <label for="star3"></label>
+           <input type="radio" name="star" id="star4">
+           <label for="star4"></label>
+           <input type="radio" name="star" id="star5">
+           <label for="star5"></label>
+         </span>
+         <form action="https://demo.hasthemes.com/petmark-v5/petmark/" class="mt--15 site-form ">
+           <div class="row">
+             <div class="col-12">
+               <div class="form-group">
+                 <label for="messagecom">Comment</label>
+                 <textarea name="comment"  cols="30" rows="10" class="form-control"></textarea>
+               </div>
+             </div>
+             <div class="col-lg-4">
+               <div class="form-group">
+                 <label for="nomcom">Name *</label>
+                 <input type="text" name="nom" class="form-control">
+               </div>
+             </div>
+             <div class="col-lg-4">
+               <div class="form-group">
+                 <label for="emailcom">Email *</label>
+                 <input type="text" name="mail" class="form-control">
+               </div>
+             </div>
+             <div class="col-lg-4">
+               <div class="form-group">
+                 
+                 <input type="hidden" name="id_article" value="<?=$idProdCom?>" class="form-control">
+               </div>
+             </div>
+             <!--div class="col-lg-4">
+               <div class="submit-btn">
+                 <a href="#" class="btn btn-black">Post Comment</a>
+               </div>
+             </!--div-->
+             <div class="col-md-12">
+                             <div class="d-flex align-items-center flex-wrap">
+                               <button type="submit" name="envoyer" class="btn btn-black   mr-3">envoyer</button>
+                             </div>
+                           </div>
+           </div>
+         </form>
+       </div>
+     </div>
                 </div>
               </div>
             </div>

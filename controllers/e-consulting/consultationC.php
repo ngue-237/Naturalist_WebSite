@@ -51,5 +51,24 @@ class consultationC{
             die('Erreur: '.$e->getMessage());
         }
     }
+
+    function rechercher($input,$colonne) {
+        if($colonne == "all") 
+        {        $sql = "SELECT * from consultations WHERE ( Objet LIKE \"%$input%\") OR ( type_animal LIKE \"%$input%\") OR ( description_con LIKE \"%$input%\") ";
+       } else {
+   $sql = "SELECT * from consultations WHERE ( $colonne LIKE \"%$input%\")  "; }
+   $db = config::getConnexion();
+   try { $liste=$db->query($sql); 
+    
+
+       return $liste;
+   }
+   catch (PDOException $e) {
+    die('Erreur: '.$e->getMessage());
+   }
 }
+
+
+}
+
 ?>

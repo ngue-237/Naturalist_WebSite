@@ -1,6 +1,81 @@
 <?php 
-include_once 'Log.php';
- ?>
+
+include '../../controllers/produits/cathegorieProd.php';
+include '../../controllers/produits/animalProdController.php';
+include '../../controllers/produits/produitsController.php';
+include '../../controllers/panier&commande/PanierC.php';
+include '../../public/util/processPanier.php';
+
+$cathProd = new CathProdController();
+$animalProd = new AnimalProdController();
+$prod = new ProduitCtrl();
+$fonctions = new PanierCtrl;
+
+//$page = $_GET['page'];
+//$next = $page + 1;
+//$previous = $page-1;
+$tab_univ=array();
+$temoin2=$fonctions->getAllProd2();
+$tab_univ=$temoin2;
+$url="shop-left-sidebar.php"; 
+
+//calcul total du panier
+$total1=0;
+foreach ($tab_univ as $key => $produit){
+  $total1=$total1+($produit['quantity']*$produit['prix']);
+}
+
+?>
+
+<?php 
+  require_once '../../controllers/utilisateurs/UtilisateurC.php';
+ //Login
+
+   
+    $message ="";
+      $userC = new UtilisateurC();
+    if (isset($_POST["emailLog"]) &&  isset($_POST["passLog"])) 
+    {
+        if (!empty($_POST["emailLog"]) &&  !empty($_POST["passLog"]))
+
+        {
+
+            if($row=$userC->connexion($_POST["emailLog"], $_POST["passLog"]))
+            {
+
+             //$_SESSION['email'] = $_POST["emailLog"];//
+
+              $_SESSION['id'] = $row['id'];
+
+             $_SESSION['nom'] = $row["nom"];
+
+             $_SESSION['pass'] = $row["pass"];
+
+             $_SESSION['image'] = $row["image"];
+
+             $_SESSION['type'] = $row["type"];
+
+
+            //  avec l'email à l'intérieur
+
+            if($_SESSION['type']==0)
+            {
+              header('Location: index.php');
+            }
+            else 
+                 header('Location: ../backend/index.php');
+
+          }
+        }
+        else
+            echo "Renseignez un mot de passe ou email correct !";
+    }
+    
+
+?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +87,7 @@ include_once 'Log.php';
 <body class="">
 	<div class="site-wrapper">
 	
-<?php include 'header.php'; ?>
+<?php include 'tete.php'; ?>
 		
 
 
@@ -36,7 +111,7 @@ include_once 'Log.php';
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
 					<!-- Login Form s-->
-					<form action="#" method="post">
+					<form action="#" method="post" >
 
 						<h4 class="login-title">Login</h4>
 						<div class="login-form">
@@ -60,7 +135,7 @@ include_once 'Log.php';
 											<label for="accept_terms" class="mb-0 font-weight-400">Remember Me</label>
 										</div>
 									</div>
-									<p><a href="#" class="pass-lost mt-3">Lost your password?</a></p>
+									<p><a href="mdp.php" class="pass-lost mt-3">Lost your password?</a></p>
 									<p>Vous n'avez pas de compte? <a href="register.php" class="pass-lost mt-3">Register</a></p>
 								</div>
 
@@ -79,7 +154,7 @@ include_once 'Log.php';
   
   
     
-<?php include_once 'footer.php'; ?>
+<?php include_once 'footerContent.php'; ?>
 <script src="js/plugins.js"></script>
 <script src="js/ajax-mail.js"></script>
 <script src="js/custom.js"></script>

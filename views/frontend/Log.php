@@ -31,10 +31,10 @@
 
             if($_SESSION['type']==0)
             {
-           header('Location: index.php');
+              header('Location: index.php');
             }
             else 
-                 header('Location: ../../back/Views/index.html');
+                 header('Location: ../backend/index.php');
 
           }
         }

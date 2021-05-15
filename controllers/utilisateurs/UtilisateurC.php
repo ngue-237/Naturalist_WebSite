@@ -1,6 +1,6 @@
 <?php
-	require_once "../config.php";
-	require_once "../Model/Utilisateur.php";
+	require_once "../../config.php";
+	require_once "../../models/utilisateurs/Utilisateur.php";
 	
 
 	class UtilisateurC 
@@ -84,19 +84,17 @@
 
 
 
-     function modifierMotDePasse($Utilisateur)
+     function modifierMotDePasse($email, $password)
 		{
 
-			$sql="UPDATE utilisateur SET pass= :pass WHERE id = :id";
+			$sql="UPDATE utilisateur SET pass= :pass WHERE email = :email";
 			$db = config::getConnexion();
 			try
-			 {			
-				$query = $db->prepare($sql);
-				$query->bindValue(':id', $Utilisateur->getId());
-				$query->bindValue(':pass', $Utilisateur->getPassword());
-				
-			
-				$query->execute();
+			{			
+				$query = $db->prepare($sql);	
+				$query->bindValue(':email', $email);		
+				$query->bindValue(':pass', $password);			
+				return $query->execute();
 			} 
 			catch (PDOException $e) 
 			{
@@ -124,7 +122,7 @@
 		}
 
 
-		function recupererEmail($email)
+		function verifEmail($email)
 		{
 			$sql="SELECT * from utilisateur where email=:email";
 			$db = config::getConnexion();
@@ -132,8 +130,7 @@
 				$query=$db->prepare($sql);
 				$query->bindValue(":email", $email);
 				$query->execute();				
-				$user = $query->fetch();
-				return $user;
+				return count($query->fetchALL());
 			}
 			catch (Exception $e){
 				die('Erreur: '.$e->getMessage());
@@ -151,9 +148,10 @@
 				$query=$db->prepare($sql);
 				$query->execute();
 				$count=$query->rowCount();
-				if($count==0){
+				if($count==0)
+				{
 					$message="pseudo ou le mot de passe est incorrect";
-					}
+				}
 					else
 					{
 						$x=$query->fetch();

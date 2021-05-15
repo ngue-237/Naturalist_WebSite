@@ -1,5 +1,21 @@
 
 <?php
+include '../../controllers/panier&commande/PanierC.php';
+include '../../public/util/processPanier.php';
+
+$fonctions = new PanierCtrl;
+
+$tab_univ=array();
+$temoin2=$fonctions->getAllProd2();
+$tab_univ=$temoin2;
+$url="cart.php"; 
+
+//calcul total du panier
+$total1=0;
+foreach ($tab_univ as $key => $produit){
+  $total1=$total1+($produit['quantity']*$produit['prix']);
+}
+
 function ch_title($title){
     $output = ob_get_contents();
     if ( ob_get_length() > 0) { ob_end_clean(); }
@@ -107,8 +123,19 @@ function ch_title($title){
                                     </div>
                                     <ul class="header-links">
                                         <li><a href="cart.php"><i class="fas fa-car-alt"></i> Commandes</a></li>
-                                        <li><a href="login-register.html"><i class="fas fa-user"></i> Se connecter</a>
-                                        </li>
+                                         <?php   
+                                 if(isset($_SESSION['nom']))
+                                          {
+             echo  '<li><a ><i class="fas fa-user"></i> '.$_SESSION['nom'].'</a></li>';
+
+                                  echo '<li><a href="logOut.php">Disconnect</a></li>';
+                                                 
+                                          }
+                                           else
+                                          {
+                                     echo '<li><a href="login-register.php"><i class="fas fa-user"></i> Se Connecter </a></li>';
+                                          }
+                                     ?>
                                     </ul>
                                 </div>
                             </div>
@@ -212,46 +239,70 @@ function ch_title($title){
                             </div>
                             <!-- Cart block-->
                             <div class="col-lg-2 col-6 offset-6 offset-md-0 col-md-3 order-3">
-                                <div class="cart-widget-wrapper slide-down-wrapper">
+                            <div class="cart-widget-wrapper slide-down-wrapper">
                                     <div class="cart-widget slide-down--btn">
                                         <div class="cart-icon">
                                             <i class="ion-bag"></i>
                                             <span class="cart-count-badge">
-                                                1
+                                                <?php echo count($tab_univ);  ?>
                                             </span>
                                         </div>
                                         <div class="cart-text">
-                                            <span class="d-block">Votre panier</span>
-                                            <strong><span class="amount"><span
-                                                        class="currencySymbol">$</span>40.00</span></strong>
+                                            <span class="d-block">Your cart</span>
+                                            <strong><span class="amount"><span class="currencySymbol">$
+                                                        <?php  echo $total1;  ?></span></span></strong>
                                         </div>
                                     </div>
                                     <div class="slide-down--item ">
                                         <div class="cart-widget-box">
                                             <ul class="cart-items">
-                                                <li class="single-cart">
-                                                    <a href="#" class="cart-product">
-                                                        <div class="cart-product-img">
-                                                            <img src="image/product/cart-product.jpg"
-                                                                alt="Selected Products">
+                                                <form method="POST">
+                                                    <li class="single-cart">
+                                                        <?php
+                                                        $array=array();
+                                                        $array=$tab_univ;
+                                                        foreach($array as $produit):
+                                                        ?>
+                                                        <div href="#" class="cart-product">
+                                                            <div class="cart-product-img">
+                                                                <img src="../../public/img/produits/home-1/<?php echo $produit['image']; ?>"
+                                                                    alt="Selected Products">
+                                                            </div>
+                                                            <div class="product-details">
+                                                                <h4 class="product-details--title">
+                                                                    <?php echo $produit['designation']; ?></h4>
+                                                                <span class="product-details--price">
+                                                                    <?php echo $produit['quantity']; ?> x $
+                                                                    <?php echo $produit['prix'];?></span>
+
+                                                            </div>
+                                                            <a class="cart-cross"
+                                                                href="cart.php?action=delete&id=<?php echo $produit['id']?>&url=<?php echo $url?>"
+                                                                style="font-weight: 500px">x</a>
                                                         </div>
-                                                        <div class="product-details">
-                                                            <h4 class="product-details--title"> Ras Neque Metus</h4>
-                                                            <span class="product-details--price">1 x $120.00</span>
-                                                        </div>
-                                                        <span class="cart-cross">x</span>
-                                                    </a>
-                                                </li>
+
+
+                                                        <?php
+                            endforeach
+                            ?>
+                                                    </li>
+                                                </form>
                                                 <li class="single-cart">
                                                     <div class="cart-product__subtotal">
-                                                        <span class="subtotal--title">Subtotal</span>
-                                                        <span class="subtotal--price">$200</span>
+                                                        <?php if (count($tab_univ)>0 and isset($total1)) {?>
+                                                        <span class="subtotal--title">Total</span>
+                                                        <span class="subtotal--price"> $ <?php
+                              echo $total1;
+                            }
+                            else{
+                              echo "<span style='text-align :center; margin-left: 25%;'>Votre panier est vide</span>";
+                            }  ?></span>
                                                     </div>
                                                 </li>
                                                 <li class="single-cart">
                                                     <div class="cart-buttons">
                                                         <a href="cart.php" class="btn btn-outlined">View Cart</a>
-                                                        <a href="checkout.html" class="btn btn-outlined">Check Out</a>
+                                                        <a href="checkout.php" class="btn btn-outlined">Check Out</a>
                                                     </div>
                                                 </li>
                                             </ul>

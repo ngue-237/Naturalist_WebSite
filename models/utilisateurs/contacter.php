@@ -1,5 +1,5 @@
 <?php
-
+  
 	class Contact
 	{ 
 		private  $id = null;

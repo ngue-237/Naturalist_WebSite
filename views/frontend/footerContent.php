@@ -25,7 +25,7 @@
               <div class="single-footer-content">
                 <ul class="footer-list">
                   <li><a href="#">About Us</a></li>
-                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
                   <li><a href="#">My orders</a></li>
                   <li><a href="#">Returns & Exchanges</a></li>
                   <li><a href="#">Shipping & Delivery</a></li>
@@ -40,12 +40,12 @@
               <h3 class="footer-title">CUSTOMER CARE</h3>
               <div class="single-footer-content">
                 <ul class="footer-list">
-                  <li><a href="#">Contact us</a></li>
+                  <li><a href="contact.php">Contact us</a></li>
                   <li><a href="#">Returns</a></li>
                   <li><a href="#">Order History</a></li>
                   <li><a href="#">Site Map</a></li>
                   <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">My Account</a></li>
+                  <li><a href="my-account.php">My Account</a></li>
                   <li><a href="#">Notification</a></li>
                 </ul>
               </div>

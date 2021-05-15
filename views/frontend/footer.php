@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="footer-copyright">
-                <p>Copyright © 2018 <a href="#">Naturalist</a>. All Rights Reserved</p>
+            <p>Copyright © <?php echo date("Y");?><a href="#">&nbsp;Naturalists</a>. All Rights Reserved</p>
             </div>
         </footer>
     </div>

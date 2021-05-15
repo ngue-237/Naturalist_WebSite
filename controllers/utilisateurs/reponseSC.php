@@ -1,6 +1,6 @@
 <?php
-      require_once "../config.php";
-      require_once "../Model/reponseS.php";
+      require_once "../../config.php";
+    require_once "../../models/utilisateurs/reponseS.php";
 
 
 class RsujetC 
@@ -8,7 +8,7 @@ class RsujetC
     
     function afficherRsujet($id)
     {
-		$sql="SELECT id_sujet, id_utilisateur ,reponse, date_R  FROM reponse_sujet where id_sujet = " . $id;
+		$sql="SELECT id, id_sujet, id_utilisateur ,reponse, date_R  FROM reponse_sujet where id_sujet = " . $id;
             $db = config::getConnexion();
             
             try
@@ -99,20 +99,7 @@ class RsujetC
         }
     }
 
-  /*  function insererCommentaire($email,$password)
-        {
-            $sql="SELECT * FROM reponse_sujet WHERE email='".$email."' and pass ='".$password."'";
-            $db = config::getConnexion();
-            try
-            {
-                $query=$db->prepare($sql);
-                $query->execute();
-                return $query->fetch();
-            }
-            catch (Exception $e){ 
-                $message = " ".$e->getMessage();
-            }
-            return tr    */    
+
            
 }
 

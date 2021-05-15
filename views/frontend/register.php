@@ -1,4 +1,34 @@
 <?php 
+
+include '../../controllers/produits/cathegorieProd.php';
+include '../../controllers/produits/animalProdController.php';
+include '../../controllers/produits/produitsController.php';
+include '../../controllers/panier&commande/PanierC.php';
+include '../../public/util/processPanier.php';
+
+$cathProd = new CathProdController();
+$animalProd = new AnimalProdController();
+$prod = new ProduitCtrl();
+$fonctions = new PanierCtrl;
+
+//$page = $_GET['page'];
+//$next = $page + 1;
+//$previous = $page-1;
+$tab_univ=array();
+$temoin2=$fonctions->getAllProd2();
+$tab_univ=$temoin2;
+$url="shop-left-sidebar.php"; 
+
+//calcul total du panier
+$total1=0;
+foreach ($tab_univ as $key => $produit){
+  $total1=$total1+($produit['quantity']*$produit['prix']);
+}
+
+?>
+
+
+<?php 
  
  require_once '../../controllers/utilisateurs/UtilisateurC.php';
 
@@ -9,9 +39,9 @@
      
     // create an instance of the controller
       $userC = new UtilisateurC();      
-    if (isset($_POST["nomReg"]) &&  isset($_POST["passReg"]) && isset($_POST["emailReg"])) 
+    if (isset($_POST["nomReg"]) &&  isset($_POST["passReg"]) && isset($_POST["emailReg"]) &&  isset($_POST["typeReg"])) 
     {
-        if (!empty($_POST["nomReg"]) && !empty($_POST["passReg"]) && !empty($_POST["emailReg"]))    
+        if (!empty($_POST["nomReg"]) && !empty($_POST["passReg"]) && !empty($_POST["emailReg"]) && !empty($_POST["typeReg"]))    
              {
                   $textFile = ['png', 'jpg','jpeg','bmp'];
                   $text = 0;
@@ -26,7 +56,7 @@
                       $pathImage = $localFile . strtolower(str_replace(' ', '',$_POST["nomReg"]) . '.' . $file['extension']);
                       move_uploaded_file($_FILES['imageReg']['tmp_name'], $pathImage);
                       
-                      $user = new Utilisateur(1, $_POST['nomReg'], $_POST['passReg'], $_POST['emailReg'], $pathImage);
+                      $user = new Utilisateur(1, $_POST['nomReg'], $_POST['passReg'], $_POST['emailReg'],(int) $_POST['typeReg'] -1, $pathImage);
 
                      
 
@@ -43,7 +73,10 @@
                                   'X-Mailer: PHP/' . phpversion();
                       if(mail($_POST['emailReg'], $subject, $message, $head))
                          {
-                         echo 'Email envoyé avec succès à '.$_POST['emailReg'].' ...';
+                        
+                         $userC->ajouterUtilisateur($user);
+                         $_SESSION['nom']  = $_POST["nomReg"];
+                         header('Location: index.php');
                          }
                        else 
                          {
@@ -51,9 +84,7 @@
                          }
          
                               
-                       $userC->ajouterUtilisateur($user);
-                       $_SESSION['nom']  = $_POST["nomReg"];
-                       header('Location: my-account.php');
+                       
                     }
                   }          
            
@@ -71,7 +102,7 @@
 <body class="">
 	<div class="site-wrapper">
 	
-<?php include 'header.php'; ?>
+<?php include 'tete.php'; ?>
 								
 
 
@@ -111,10 +142,12 @@
 									<input type="password" class="mb-0" name="passReg" placeholder="Password"  id="password" class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
 								</div>
                                
-                
+                <input type="hidden" class="mb-0" name ="typeReg" id="type"  placeholder="type" value="1" required/>
+
+
                 <div class="col-12 mb--20">
                   <label>Image</label>
-                  <input type="hidden" name= "MAX_FILE_SIZE" value="5000000" />
+                  <input type="" name= "MAX_FILE_SIZE" value="5000000" />
                 <input type="file"  name="imageReg" /> 
                 </div>
 							
@@ -134,7 +167,7 @@
 
   
   
- <?php include 'footer.php'; ?> 
+ <?php include 'footerContent.php'; ?> 
 
 <script src="js/plugins.js"></script>
 <script src="js/ajax-mail.js"></script>

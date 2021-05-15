@@ -37,4 +37,12 @@ if(isset($_GET['delete'])){
     $_SESSION['msg_type'] = "danger";
     header("location:../../views/backend/e-consultation.php");
 }
+
+if ((isset($_POST["recherche"]))&& (isset($_POST["colonne"]))){
+    if (!empty(isset($_POST["recherche"]))){
+     $n=$_POST["colonne"];
+     echo ("colonne = $n " );
+      $listeconsultation=$consultationC->rechercher($_POST["recherche"],$n);
+    } 
+   }
 ?>

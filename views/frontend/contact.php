@@ -1,5 +1,35 @@
 <?php 
- require_once '../Controller/contacterC.php';
+
+include '../../controllers/produits/cathegorieProd.php';
+include '../../controllers/produits/animalProdController.php';
+include '../../controllers/produits/produitsController.php';
+include '../../controllers/panier&commande/PanierC.php';
+include '../../public/util/processPanier.php';
+
+$cathProd = new CathProdController();
+$animalProd = new AnimalProdController();
+$prod = new ProduitCtrl();
+$fonctions = new PanierCtrl;
+
+//$page = $_GET['page'];
+//$next = $page + 1;
+//$previous = $page-1;
+$tab_univ=array();
+$temoin2=$fonctions->getAllProd2();
+$tab_univ=$temoin2;
+$url="shop-left-sidebar.php"; 
+
+//calcul total du panier
+$total1=0;
+foreach ($tab_univ as $key => $produit){
+  $total1=$total1+($produit['quantity']*$produit['prix']);
+}
+
+?>
+
+<?php 
+
+ require_once '../../controllers/utilisateurs/contacterC.php';
 
 
        
@@ -23,19 +53,31 @@
             !empty($_POST['messageC']) )    
              {
 
- $visiteur = new Contact(20, $_POST['nomC'], $_POST['emailC'], $_POST['sujetC'], $_POST['messageC'] );
+                 ini_set("SMTP","smtp.gmail.com");
+                 ini_set("sendmail_from", $_POST['emailC']);
+                 ini_set("smtp_port",587);
+                 $subject = $_POST['sujetC'];
+                 $message = ' '.$_POST['messageC'].'  ';
 
-
+                       $head = 'From:'.$_POST['emailC'].' ' . "\r\n" .
+                                  'Reply-To: '.$_POST['emailC'].'' . "\r\n" .
+                                  'X-Mailer: PHP/' . phpversion();
+                      if(mail("naturalist2a6@gmail.com", $subject, $message, $head))
+                         {
+                        
+        $visiteur = new Contact(20, $_POST['nomC'], $_POST['emailC'], $_POST['sujetC'], $_POST['messageC'] );
 
                  $visiteurC->ajouterContact($visiteur);
                  header('Location: index.php');
-                 
-                              
+                         }
+                       else 
+                         {
+                          echo "Échec de l'envoi de l'email...";
+                         }
+ 
+                                            
              }
-              else
-                   {
-                    $error = "Missing information";
-                   }
+    
     }                
            
                   
@@ -51,12 +93,11 @@
 
 
 <!-- Mirrored from demo.hasthemes.com/petmark-v5/petmark/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Apr 2021 06:23:39 GMT -->
-<?php include 'head.php'; ?>
+<?php include 'head.php'?>
 
 <body class="">
-	<div class="site-wrapper">
-	
-<?php include 'header.php'; ?>
+ 
+ <?php include 'tete.php'?>
 					
 <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
   <div class="container">
@@ -67,11 +108,7 @@
   </div>
 </nav>
 
-<div class="gogle_map section-padding-top">
-  <div id="googleMap">
 
-  </div>
-</div>
 <section class="contact-page-section overflow-hidden">
     <div class="row">
       <div class="col-md-6">
@@ -79,7 +116,7 @@
           <div class="ct-section-title">
             <h2>TELL US YOUR PROJECT</h2>
           </div>
-          <form action="" method="post" >
+          <form action="" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
@@ -118,14 +155,13 @@
           <div class="contact-right-description">
             <article class="ct-article">
               <h3 class="d-none sr-only">blog-article</h3>
-              <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam
-                littera
-                gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
+              <p> Nous sommes a votre écoute pour toute préocupation, toute 
+              demande d'information et toute documentation</p>
             </article>
             <ul class="contact-list mb--35">
-              <li><i class="fas fa-fax"></i>Address : No 40 Baria Sreet 133/2 NewYork City</li>
-              <li><i class="fas fa-phone"></i>0(1234) 567 890</li>
-              <li><i class="far fa-envelope"></i>Info@roadthemes.com</li>
+              <li><i class="fas fa-fax"></i>Address : Ariana Tunisie/2083 Tunis</li>
+              <li><i class="fas fa-phone"></i>24 858 345</li>
+              <li><i class="far fa-envelope"></i>naturalist2a6@gmail.com</li>
             </ul>
             <div class="working-hour">
               <h3>Working hours</h3>
@@ -139,201 +175,14 @@
 
   
   
- <?php include 'footer.php'; ?> 
+     <?php require './footerContent.php'; ?>
+    </div>
+    <script src="js/plugins.js"></script>
+    <script src="js/ajax-mail.js"></script>
+   
+    <script type="text/javascript" src="./js/autocompleteSearch.js"></script>
+    <script src="./js/filterSystem.js" type="text/javascript"></script>
 
-<script src="js/plugins.js"></script>
-<script src="js/ajax-mail.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo"></script>
-<script>
-    // When the window has finished loading create our google map below
-    google.maps.event.addDomListener(window, 'load', init);
-
-    function init() {
-        // Basic options for a simple Google Map
-        // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-        
-        var mapOptions = { 
-            // How zoomed in you want the map to start at (always required)
-            zoom: 12,
-
-            scrollwheel: false,
-
-            // The latitude and longitude to center the map (always required)
-            center: new google.maps.LatLng(23.761226, 90.420766), // New York
-
-            // How you would like to style the map. 
-            // This is where you would paste any style found on Snazzy Maps.
-            styles: [{
-                "featureType": "all",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "saturation": 36
-                },
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 40
-                }
-                ]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "visibility": "on"
-                },
-                {
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 16
-                }
-                ]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 20
-                }
-                ]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 17
-                },
-                {
-                    "weight": 1.2
-                }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 20
-                }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 21
-                }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 17
-                }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 29
-                },
-                {
-                    "weight": 0.2
-                }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 18
-                }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 16
-                }
-                ]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 19
-                }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#000000"
-                },
-                {
-                    "lightness": 17
-                }
-                ]
-            }
-            ]
-        };
-
-        // Get the HTML DOM element that will contain your map 
-        // We are using a div with id="map" seen below in the <body>
-        var mapElement = document.getElementById('googleMap');
-
-        // Create the Google Map using our element and options defined above
-        var map = new google.maps.Map(mapElement, mapOptions);
-
-        // Let's also add a marker while we're at it
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(23.761226, 90.420766),
-            map: map,
-            title: 'googlemap!',
-            animation: google.maps.Animation.BOUNCE
-
-        });
-    }
-</script>
 <script src="js/custom.js"></script>
 </body>
 

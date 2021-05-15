@@ -8,15 +8,16 @@
 		private  $email = null;
 		private  $type = null;
 		private  $image = null;
-		function __construct(int $id,string $nom, string $pass, string $email,bool $type, string $image)
+	function __construct(int $id,string $nom, string $pass, string $email,bool $type, string $image)
 		{
 			$this->id = $id;
 			$this->nom=$nom;
 	    	$this->pass=$pass;
 	    	$this->email=$email;
-	    	$this->type=0;
+	    	$this->type=$type;
 	    	$this->image=$image;
 		}
+
 		
 		public function getId()
 		{

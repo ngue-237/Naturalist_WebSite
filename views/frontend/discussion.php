@@ -1,8 +1,37 @@
 <?php 
-    require_once "../Controller/reponseSC.php";
+
+include '../../controllers/produits/cathegorieProd.php';
+include '../../controllers/produits/animalProdController.php';
+include '../../controllers/produits/produitsController.php';
+include '../../controllers/panier&commande/PanierC.php';
+include '../../public/util/processPanier.php';
+
+$cathProd = new CathProdController();
+$animalProd = new AnimalProdController();
+$prod = new ProduitCtrl();
+$fonctions = new PanierCtrl;
+
+//$page = $_GET['page'];
+//$next = $page + 1;
+//$previous = $page-1;
+$tab_univ=array();
+$temoin2=$fonctions->getAllProd2();
+$tab_univ=$temoin2;
+$url="shop-left-sidebar.php"; 
+
+//calcul total du panier
+$total1=0;
+foreach ($tab_univ as $key => $produit){
+  $total1=$total1+($produit['quantity']*$produit['prix']);
+}
+
+?>
+
+<?php 
+    require_once '../../controllers/utilisateurs/reponseSC.php';
 
 
-    require_once '../Controller/UtilisateurC.php';
+    require_once '../../controllers/utilisateurs/UtilisateurC.php';
 
     $userC = new UtilisateurC();
 
@@ -38,7 +67,7 @@
 <body class="">
   <div class="site-wrapper">
   
-<?php include 'header.php'; ?>
+<?php include 'tete.php'; ?>
                 
 
 

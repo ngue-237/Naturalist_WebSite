@@ -1,12 +1,13 @@
 <?php
-      require_once "../config.php";
-      require_once "../Model/SujetFm.php";
+
+      require_once "../../config.php";
+      require_once "../../models/utilisateurs/SujetFm.php";
 
 class SujetC {
 
     function affichersujet()
     {
-		$sql="SELECT id_sujet, id_utilisateur, speudo, type,message,date_p  FROM sujet ORDER BY date_p DESC";
+		$sql="SELECT id_sujet, id_utilisateur, type,message,date_p  FROM sujet ORDER BY date_p DESC";
             $db = config::getConnexion();
             
             try
@@ -25,13 +26,12 @@ class SujetC {
          
         function ajoutersujet($Sujet)
         {
-         $sql="INSERT INTO sujet (id_utilisateur,speudo,type,message, date_p) 
-                VALUES(:id_utilisateur, :speudo, :type, :message, :NOW)";
+         $sql="INSERT INTO sujet (id_utilisateur, type,message, date_p) 
+                VALUES(:id_utilisateur, :type, :message, :NOW)";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
                 $query->bindValue(':id_utilisateur', $Sujet->getid_user());
-                $query->bindValue(':speudo', $Sujet->getspeudo());
                 $query->bindValue(':type', $Sujet->gettype());
                 $query->bindValue(':message', $Sujet->getmessage());
                 $query->bindValue(':NOW', $Sujet->getDate());
@@ -84,13 +84,12 @@ class SujetC {
          function modifiersujet($Sujet)
         {
 
-  $sql="UPDATE sujet SET speudo=:speudo, type=:type, message=:message, date_p=:NOW() WHERE id_sujet =:id_sujet";
+  $sql="UPDATE sujet SET  type=:type, message=:message, date_p=:NOW() WHERE id_sujet =:id_sujet";
             $db = config::getConnexion();
             try
              {          
                 $query = $db->prepare($sql);
                 $query->bindValue(':id_sujet', $Sujet->getid_sujet());
-                $query->bindValue(':speudo', $Sujet->getspeudo());
                 $query->bindValue(':type', $Sujet->gettype());
                 $query->bindValue(':message', $Sujet->getMessage());
                 $query->bindValue(':NOW', $Sujet->getDate());
@@ -123,17 +122,20 @@ class SujetC {
 
         function rechercher($id_sujet)
     {
-        $sql="SELECT * from sujet where id_sujet=$id_sujet";
+        $sql="SELECT * from sujet WHERE nom like '%$search_value%' or id like '%$search_value%' or email like '%$search_value%'  ";
         $db = config::getConnexion();
         try
         {
         $liste=$db->query($sql);
         return $liste;
         }
-        catch (Exception $e){
+        catch (Exception $e)
+        {
             die('Erreur: '.$e->getMessage());
         }
-    }        
+    }
+
+   
            
 }
 
