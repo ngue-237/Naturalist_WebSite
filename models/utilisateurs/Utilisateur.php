@@ -8,7 +8,7 @@
 		private  $email = null;
 		private  $type = null;
 		private  $image = null;
-	function __construct(int $id,string $nom, string $pass, string $email,bool $type, string $image)
+	function __construct(int $id, $nom, $pass, $email, $type, $image)
 		{
 			$this->id = $id;
 			$this->nom=$nom;

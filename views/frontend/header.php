@@ -37,6 +37,7 @@ function ch_title($title){
     <link rel="stylesheet" href="css/main.css" />
     <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
     <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="./css/forumStyle.css">
     <title>Naturalist</title>
     
 </head>
@@ -126,7 +127,7 @@ function ch_title($title){
                                          <?php   
                                  if(isset($_SESSION['nom']))
                                           {
-             echo  '<li><a ><i class="fas fa-user"></i> '.$_SESSION['nom'].'</a></li>';
+             echo  '<li><i class="fas fa-user"></i> '.$_SESSION['nom'].'</li>';
 
                                   echo '<li><a href="logOut.php">Disconnect</a></li>';
                                                  
@@ -343,7 +344,7 @@ function ch_title($title){
                                             <a href="index.php" class="mainmenu__link">Accueil</a>
                                         </li>
                                         <li class="mainmenu__item ">
-                                            <a href="#" class="mainmenu__link">Forum</a>
+                                            <a href="forum.php" class="mainmenu__link">Forum</a>
                                         </li>
                                         <li class="mainmenu__item ">
                                             <a href="e-consulting.php" class="mainmenu__link">e-consultation</a>

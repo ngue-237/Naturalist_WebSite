@@ -26,18 +26,18 @@ class SujetC {
          
         function ajoutersujet($Sujet)
         {
-         $sql="INSERT INTO sujet (id_utilisateur, type,message, date_p) 
-                VALUES(:id_utilisateur, :type, :message, :NOW)";
+         $sql="INSERT INTO sujet(id_sujet, id_utilisateur, type,message, date_p)
+          VALUES(:id_sujet, :id_utilisateur, :type, :message, NOW())";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
+                $query->bindValue(':id_sujet', $Sujet->getid_sujet());
                 $query->bindValue(':id_utilisateur', $Sujet->getid_user());
                 $query->bindValue(':type', $Sujet->gettype());
-                $query->bindValue(':message', $Sujet->getmessage());
-                $query->bindValue(':NOW', $Sujet->getDate());
+            $query->bindValue(':message', $Sujet->getmessage());
                 
             
-                $query->execute();          
+                return $query->execute();          
             }
             catch (Exception $e){
                 echo 'Erreur: '.$e->getMessage();

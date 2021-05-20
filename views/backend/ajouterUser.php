@@ -10,7 +10,7 @@
      
     // create an instance of the controller
       $userC = new UtilisateurC();      
-    if (isset($_POST["nomReg"]) &&  isset($_POST["passReg"]) && isset($_POST["emailReg"]) && isset($_POST["typeReg"]) && isset($_FILES["imageReg"])  ) 
+    if (isset($_POST["nomReg"]) && isset($_POST["passReg"]) && isset($_POST["emailReg"]) && isset($_POST["typeReg"]) && isset($_FILES["imageReg"])  ) 
     {
         if (!empty($_POST["nomReg"]) && !empty($_POST["passReg"]) && !empty($_POST["emailReg"]) && !empty($_POST["typeReg"]) && !empty($_FILES["imageReg"]) )   
              {
@@ -30,7 +30,7 @@
                       $pathImage = $localFile . strtolower(str_replace(' ', '',$_POST["nomReg"]) . '.' . $file['extension']);
                       move_uploaded_file($_FILES['imageReg']['tmp_name'], $pathImage);
                       
-                      $user = new Utilisateur(1, $_POST['nomReg'], $_POST['passReg'], $_POST['emailReg'],(int)$_POST['typeReg'] -1, $pathImage);
+                      $user = new Utilisateur(24, $_POST['nomReg'], $_POST['passReg'], $_POST['emailReg'],(int)$_POST['typeReg'] -1, $pathImage);
                 
                      $userC->ajouterUtilisateur($user);
                      header('Location: afficheruser.php');
@@ -39,11 +39,11 @@
                   }                
            
            }
-        else
-       echo "marc\n\n\n\n";
+        
+      
     }
-    else
-     echo "mouton\n\n\n\n";
+   
+    
    
     
     

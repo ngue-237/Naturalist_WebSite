@@ -29,12 +29,11 @@ class CommentaireC{
     function ajouterCommentaire($commentaire){
         $conn = config::getConnexion();
         
-        $sql = "INSERT INTO blog_commentaire (nom, email, contenu, id_du_blog) values (:nom, :email, :contenu, :id_du_blog ) ";
+        $sql = "INSERT INTO blog_commentaire (id_user, contenu, id_du_blog) values (:id_user, :contenu, :id_du_blog ) ";
         try {
             $req = $conn->prepare($sql);
-            $req->bindValue(':nom',$commentaire->getNom());
+            $req->bindValue(':id_user',$commentaire->getid_user());
             $req->bindValue(':contenu',$commentaire->getContenu());
-            $req->bindValue(':email',$commentaire->getemail());
             $req->bindValue(':id_du_blog',$commentaire->getId_du_blog());
             $req->execute();
         } catch (PDOException $e) {

@@ -133,7 +133,7 @@ $previous = $page-1;
                   <?php 
                   if($previous ==0):
                   ?>
-                    <a class="class="page-link" href="#"   aria-disabled="true">Previous</a>
+                    <a class="page-link" href="#"   aria-disabled="true">Previous</a>
                   <?php else :?>
                     <a class="page-link" href="./cathegorieProd.php?page=<?=$previous;?>">Previous</a>
                   <?php endif; ?>
@@ -160,31 +160,5 @@ $previous = $page-1;
         </div>
         </div>
       </section>
-      <?php require './footerContent.php'; ?>
-    </div>
-    <?php require './script.php' ?> 
-    <!-- Main File-->
-    <!-- <script src="js/front.js"></script> -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#search_text").keyup(function(){
-                var search = $(this).val();
-                $.ajax({
-                    url:'../../public/util/processCath.php',
-                    method:'get',
-                    data:{query:search},
-                    success:function(response){
-                      console.log("response: " + response);
-
-                        $("#table_data").html(response);
-                    },
-                    error:function(response){
-                        alert(response);
-                        console.log('reponse:'+ response);
-                    }
-                });
-            });
-        });
-  </script>
-  </body>
-</html>
+      <?php require './footer.php';?> 
+      <script type="text/javascript" src="./js/liveSearch.js" ></script>

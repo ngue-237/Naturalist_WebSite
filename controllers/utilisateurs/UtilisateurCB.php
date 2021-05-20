@@ -8,7 +8,7 @@
 		
 		function ajouterUtilisateur($utilisateur)
 		{
-			$sql="INSERT INTO utilisateur (nom, pass, email,type, image) 
+			$sql="INSERT INTO utilisateur (nom, pass, email, type, image) 
 			VALUES(:nom, :pass, :email, :type, :image)";
 			$db = config::getConnexion();
 			try{

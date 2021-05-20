@@ -3,9 +3,11 @@
 require_once '../../models/blog/Blog.php';
 require_once '../../controllers/blog/BlogC.php';
 include_once '../../controllers/blog/commentaireBlogC.php';
+require_once '../../controllers/utilisateurs/UtilisateurC.php'; 
+
 
 $commentaireC = new CommentaireC();
-
+$userC =  new UtilisateurC();
 $listeR=$commentaireC;
 
 if(isset($_POST['search1']))
@@ -78,7 +80,6 @@ if(isset($_POST['ASCU']))
               <th scope="col">NOM </th>
               <th scope="col">DATE </th>
               <th scope="col">COMMENTAIRE</th>
-              <th scope="col">ID DU BLOG</th>
               <th scope="col">ACTION</th>
             </tr>
             </thead>
@@ -93,10 +94,9 @@ if(isset($_POST['ASCU']))
               <tbody>
                   <tr>
                     <td><?=$i++;?></td>
-                    <td><?=$row['nom'];?></td>
+                    <td><?php echo $userC->recupererUtilisateur1($row['id_user'])['nom']; ?></td>
                     <td><?=$row['date'];?></td>
                     <td><?=$row['contenu'];?></td>
-                    <td><?=$row['id_du_blog'];?></td>
                     <td>
                       <a href="../../public/util/processCommentaire.php?delete=<?php echo $row['id_commentaire'] ?>">
                           <i class="fas fa-trash-alt"></i>  
@@ -109,9 +109,4 @@ if(isset($_POST['ASCU']))
         </div>
         </div>
       </section>
-      <?php require './footerContent.php'; ?>
-    </div>
-    
-    <?php require './script.php' ?> 
-  </body>
-</html> 
+      <?php require './footer.php';?> 

@@ -371,7 +371,7 @@ foreach ($tab_univ as $key => $produit){
             </div>
         </header>
         <!-- Modal -->
-        <div class="modal fade modal-quick-view" id="quickModal" tabindex="-1" role="dialog"
+        <div class="modal modalBt fade modal-quick-view" id="quickModal" tabindex="-1" role="dialog"
             aria-labelledby="quickModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -385,36 +385,7 @@ foreach ($tab_univ as $key => $produit){
                                 <div class="image-block">
                                     <!-- Zoomable IMage -->
                                     <img id="zoom_03" src="image/product/product-details/product-details-1.jpg"
-                                        data-zoom-image="image/product/product-details/product-details-1.jpg" alt="" />
-
-                                    <!-- Product Gallery with Slick Slider -->
-                                    <div id="product-view-gallery" class="elevate-gallery">
-                                        <!-- Slick Single -->
-                                        <a href="#" class="gallary-item"
-                                            data-image="image/product/product-details/product-details-1.jpg"
-                                            data-zoom-image="image/product/product-details/product-details-1.jpg">
-                                            <img src="image/product/product-details/product-details-1.jpg" alt="" />
-                                        </a>
-                                        <!-- Slick Single -->
-                                        <a href="#" class="gallary-item"
-                                            data-image="image/product/product-details/product-details-2.jpg"
-                                            data-zoom-image="image/product/product-details/product-details-2.jpg">
-                                            <img src="image/product/product-details/product-details-2.jpg" alt="" />
-                                        </a>
-                                        <!-- Slick Single -->
-                                        <a href="#" class="gallary-item"
-                                            data-image="image/product/product-details/product-details-3.jpg"
-                                            data-zoom-image="image/product/product-details/product-details-3.jpg">
-                                            <img src="image/product/product-details/product-details-3.jpg" alt="" />
-                                        </a>
-                                        <!-- Slick Single -->
-                                        <a href="#" class="gallary-item"
-                                            data-image="image/product/product-details/product-details-4.jpg"
-                                            data-zoom-image="image/product/product-details/product-details-4.jpg">
-                                            <img src="image/product/product-details/product-details-4.jpg" alt="" />
-                                        </a>
-
-                                    </div>
+                                        data-zoom-image="image/product/product-details/product-details-1.jpg" alt="" />                      
                                 </div>
                             </div>
 
@@ -466,7 +437,7 @@ foreach ($tab_univ as $key => $produit){
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>//
         </div>
 
         <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
@@ -520,7 +491,8 @@ foreach ($tab_univ as $key => $produit){
                                             <li>
                                                 <a href="./shop-left-sidebar.php?page=1?idProdMod<?= $produit['id_produit'];?>"
                                                     data-toggle="modal" data-target="#quickModal"><i
-                                                        class="ion-ios-search"></i></a>
+                                                        class="ion-ios-search loupe" id="<?= $produit['id_produit'];?>" value="<?= $produit['id_produit'];?>"></i></a>
+                                                        
                                             </li>
                                         </ul>
                                     </div>
@@ -528,17 +500,17 @@ foreach ($tab_univ as $key => $produit){
                                         <h3 class="font-weight-500"><a
                                                 href="product-details.html"><?= $produit['designation'];?></a></h3>
                                         <div class="price text-red">
-                                            <span class="old"><?= $produit['prix_vente'];?></span>
-                                            <span><?= $produit['prix_achat'];?></span>
+                                            <span class="old"><?= $produit['prix_vente'];?>$</span>
+                                            <span><?= $produit['prix_achat'];?>$</span>
                                         </div>
                                         <div class="btn-block grid-btn" style="left:-15px;"> 
                                     <input type="submit" name="boutton" value="Add to Cart" class="btn btn-outlined btn-rounded">
                                     <input style="height: 30px; width: 30px;margin-left: 20px;border-radius: 30%;" type="number" name="quantite" value="1"/>
                                          </div>
                                         <input type="hidden" name="id_produit" value="<?= $produit['id_produit'];?>">
-                            <input type="hidden" name="designation" value="<?= $produit['designation'];?>">
-                            <input type="hidden" name="prix" value="<?= $produit['prix_achat'];?>">
-                            <input type="hidden" name="image" value="<?= $produit['img'];?>">
+                                        <input type="hidden" name="designation" value="<?= $produit['designation'];?>">
+                                        <input type="hidden" name="prix" value="<?= $produit['prix_achat'];?>">
+                                        <input type="hidden" name="image" value="<?= $produit['img'];?>">
 
                                     </div>
                                 </form>
@@ -631,6 +603,7 @@ foreach ($tab_univ as $key => $produit){
     <script src="js/custom.js"></script>
     <script type="text/javascript" src="./js/autocompleteSearch.js"></script>
     <script src="./js/filterSystem.js" type="text/javascript"></script>
+    <script src="./js/boiteModale.js" type="text/javascript"></script>
 </body>
 
 </html>

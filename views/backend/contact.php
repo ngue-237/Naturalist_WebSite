@@ -27,7 +27,7 @@
 
       <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
 
-          <table class="table caption-top" id="myTable">
+          <table class="table caption-top" id="myTable" >
   <caption>Liste des personnes nous ayant contacté</caption>
   <thead>
     <tr>

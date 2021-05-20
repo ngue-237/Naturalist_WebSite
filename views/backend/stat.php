@@ -22,7 +22,7 @@ $res = 	$dbhandle->query($query);
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">afficher Forum</li>
+            <li class="breadcrumb-item active">afficher statistiques</li>
           </ul>
         </div>
       </div>

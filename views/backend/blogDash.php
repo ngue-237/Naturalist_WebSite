@@ -45,17 +45,18 @@ if(isset($_POST['ASCU']))
 
 <?php require './header.php'; ?>
     <!-- Side Navbar -->
-    <?php require './sideNavBar.php'?>
+     <?php require './sideNavBar.php'?>
     <div class="page">
       <!-- navbar-->
       <?php require './headerContent.php'; ?>
+
       <div class="breadcrumb-holder">
         <div class="container">
           <div class="row">
             <div class="col-sm-3">
               <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active"><a href="produits.html">Blog</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active">Blog</li>
               </ul>
             </div>
         </div>          
@@ -95,24 +96,20 @@ if(isset($_POST['ASCU']))
               <th scope="col"></th>
               <th scope="col">NOM BLOG</th>
               <th scope="col">DATE CREATION</th>
-              <th scope="col">ID-BLOG</th>
               <th scope="col">ACTION</th>
             </tr>
             </thead>
             <?php
               $blogC = new blogC();
               $rows = $blogC->getAllBlog();
-              // var_dump($rows);
-              // die("je suis là");
               $i=1;
-              foreach($rows as $row):
+              foreach($rows as $row): 
             ?>
               <tbody>
                   <tr>
                     <td><?=$i++;?></td>
                     <td><?=$row['nom_blog'];?></td>
                     <td><?=$row['date_blog'];?></td>
-                    <td><?=$row['id_blog'];?></td>
                     <td>
                       <a href="../../public/util/processBlog.php?edit=<?php echo $row['id_blog'] ?>">
                           <i class="far fa-edit"></i>
@@ -130,30 +127,4 @@ if(isset($_POST['ASCU']))
         </div>
         </div>
       </section>
-      <footer class="main-footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-6">
-              <p>Your company &copy; 2017-2020</p>
-            </div>
-            <div class="col-sm-6 text-right">
-              <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Bootstrapious</a></p>
-              <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-    <!-- JavaScript files-->
-    < src="vendor/jquery/jquery.min.js"></>
-    < src="vendor/bootstrap/js/bootstrap.bundle.min.js"></>
-    < src="js/grasp_mobile_progress_circle-1.0.0.min.js"></>
-    < src="vendor/jquery.cookie/jquery.cookie.js"> </>
-    < src="vendor/chart.js/Chart.min.js"></>
-    < src="vendor/jquery-validation/jquery.validate.min.js"></>
-    < src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></>
-    < src="js/charts-home.js"></>
-    <!-- Main File-->
-    
-  </body>
-</html> 
+      <?php require './footer.php';?>

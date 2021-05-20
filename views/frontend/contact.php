@@ -55,7 +55,7 @@ foreach ($tab_univ as $key => $produit){
 
                  ini_set("SMTP","smtp.gmail.com");
                  ini_set("sendmail_from", $_POST['emailC']);
-                 ini_set("smtp_port",587);
+                 ini_set("smtp_port",3306);
                  $subject = $_POST['sujetC'];
                  $message = ' '.$_POST['messageC'].'  ';
 

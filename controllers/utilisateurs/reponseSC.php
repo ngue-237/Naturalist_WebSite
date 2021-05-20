@@ -28,14 +28,14 @@ class RsujetC
 
         function ajouterRsujet($Rsujet)
         {
-            $sql="INSERT INTO reponse_sujet ( id_sujet, id_utilisateur, reponse, date_R) VALUES(:id_sujet, :id_utilisateur, :reponse, :NOW)";
+            $sql="INSERT INTO reponse_sujet (id, id_sujet, id_utilisateur, reponse, date_R)
+             VALUES(1, :id_sujet, :id_utilisateur, :reponse, NOW())";
             $db = config::getConnexion();
             try{
                 $query = $db->prepare($sql);
                 $query->bindValue(':id_sujet', $Rsujet->getid_sujet());
                 $query->bindValue(':id_utilisateur', $Rsujet->getid_user());        
-                $query->bindValue(':reponse', $Rsujet->getreponse());  
-                $query->bindValue(':NOW', $Rsujet->getDate());
+                $query->bindValue(':reponse', $Rsujet->getreponse()); 
                               
             
                 $query->execute();          

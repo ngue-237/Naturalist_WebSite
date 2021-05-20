@@ -106,12 +106,12 @@ foreach ($tab_univ as $key => $produit){
     <main class="page-section pb--10 pt--50">
 		<div class="container">
 			<header class="entry-header">
-				<h1 class="entry-title">My Account</h1>
+				<h1 class="entry-titl titre1">SE CONNECTER</h1>
 			</header>
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
 					<!-- Login Form s-->
-					<form action="#" method="post" >
+					<form action="#" method="post" class="form-size1" >
 
 						<h4 class="login-title">Login</h4>
 						<div class="login-form">

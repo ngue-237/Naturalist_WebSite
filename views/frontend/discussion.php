@@ -27,6 +27,7 @@ foreach ($tab_univ as $key => $produit){
 
 ?>
 
+
 <?php 
     require_once '../../controllers/utilisateurs/reponseSC.php';
 
@@ -43,7 +44,7 @@ foreach ($tab_univ as $key => $produit){
    if(!empty($_SESSION['id']) && !empty($_POST["id_sujet"]) && !empty($_POST["reponseR"]))
         {      
  
-          $commentaire= new Rsujet(1,(int) $_POST['id_sujet'],(int) $_SESSION['id'], $_POST['reponseR'],date("Y-m-d h:i:sa"));          
+ $commentaire= new Rsujet(1,(int) $_POST['id_sujet'],(int) $_SESSION['id'], $_POST['reponseR'],date("Y-m-d H:i:s"));          
 
           $commentaireC->ajouterRsujet($commentaire);
 
@@ -60,16 +61,12 @@ foreach ($tab_univ as $key => $produit){
 <html lang="en">
 
 
-<!-- Mirrored from demo.hasthemes.com/petmark-v5/petmark/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Apr 2021 06:23:39 GMT -->
 <?php include 'head.php'; ?>
-<link rel="stylesheet" href="css/forumcss.css" />
 
 <body class="">
-  <div class="site-wrapper">
   
-<?php include 'tete.php'; ?>
-                
 
+<?php include 'tete.php'; ?>
 
 <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
   <div class="container">

@@ -16,14 +16,13 @@ function test_input($data) {
 
 
 if(isset($_POST['ajouterCommentaire'])){
-    $nom = $_POST['nom'];
+    $id_user = $_POST['id_user'];
     $contenu = $_POST['contenu'];
-    $email = $_POST['email'];
     $id_du_blog = $_POST['id_du_blog'];
-    $commentaire = new Commentaire($nom, $email, $contenu, $id_commentaire, $id_du_blog);
+    $commentaire = new Commentaire($id_user, $contenu, $id_commentaire, $id_du_blog);
     $commentaireC = new commentaireC();
     $commentaireC->ajouterCommentaire($commentaire);
-    header("location:../../views/frontend/blog-details.php?id_blog=$id_du_blog");
+    header("location:../../views/frontend/blog-detailsMod.php?id_blog=$id_du_blog");
 }
 if(isset($_GET['delete']))
 {   
@@ -43,6 +42,24 @@ $output =$result= "";
          die("manger");
 }
 
+if(isset($_GET['delete1']))
+{   
+    $idCommentaire = $_GET['delete1'];
+    $idBlog = $_GET['idBlog'];
+    
+      
+    $CommentaireCtrl->deleteCommentaire($idCommentaire);
+  
+    header("location:../../views/frontend/blog-detailsMod.php?id_blog=$idBlog");
+}
+$output =$result= "";
+    if(isset($_GET['query'])){
+        $search = $_GET['query'];
+        $result = $CommentaireCtrl->liveSearchComm($search);
+         var_dump($result);
+
+         die("manger");
+}
 
 
 ?>

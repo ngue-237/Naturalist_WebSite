@@ -120,12 +120,7 @@
       </div>
       </div>
     </section>
-    <?php require './footerContent.php'; ?>
-  </div>
-
-  <?php require './script.php' ?> 
-  <!-- Main File-->
-  <!-- <script src="js/front.js"></script> -->
+    <?php require './footer.php'; ?>
   <script type="text/javascript">
         $(document).ready(function(){
             $("#search_text").keyup(function(){
@@ -146,5 +141,3 @@
             });
         });
   </script>
-</body>
-</html>

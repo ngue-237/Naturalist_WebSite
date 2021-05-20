@@ -1,5 +1,8 @@
 <?php
 include '../../config.php';
+include_once '../../controllers/produits/produitsController.php';
+
+$prod = new ProduitCtrl();
 $conn = config::getConnexion();
 
 if(isset($_POST['action'])){
@@ -55,6 +58,7 @@ if(isset($_POST['action'])){
 }
 
 if (isset($_POST['query'])) {
+  
   $inpText = $_POST['query'];
   $lim = 3;
   $sql = "SELECT designation, id_produit FROM produits WHERE designation OR marque LIKE :dsign LIMIT $lim";
@@ -69,6 +73,80 @@ if (isset($_POST['query'])) {
   } else {
     echo '<p class="list-group-item border-1">No Record</p>';
   }
+}
+
+if(isset($_GET['query1'])){
+
+$idProd = $_GET['query1'];
+$row =  $prod->getProdById($idProd);
+
+$output ='';
+foreach($row as $row){
+  $output .='<div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="pm-product-details">
+              <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="row">
+                  <!-- Blog Details Image Block -->
+                  <div class="col-md-6">
+                      <div class="image-block">
+                          <!-- Zoomable IMage -->
+                          <img id="zoom_03" src="../../public/img/produits/home-1/'.$row['img'].'"
+                              data-zoom-image="../../public/img/produits/home-1/'.$row['img'].'" alt="" />                      
+                      </div>
+                  </div>
+
+                  <div class="col-md-6 mt-4 mt-lg-0">
+                      <div class="description-block">
+                          <div class="header-block">
+                              <h3>'.$row['designation'].'</h3>
+                          </div>
+                          <!-- Price -->
+                          <p class="price"><span class="old-price">'.$row['prix_vente'].'$</span>'.$row['prix_achat'].'$</p>
+                          
+                          <!-- Blog Short Description -->
+                          <div class="product-short-para">
+                              <p>
+                              '.$row['descriptionProd'].'
+                              </p>
+                          </div>
+                          <div class="status">
+                              <i class="fas fa-check-circle"></i>'.$row['quantiteStock'].' IN STOCK
+                          </div>
+                          <!-- Amount and Add to cart -->
+                          <form action="https://demo.hasthemes.com/petmark-v5/petmark/" class="add-to-cart">
+                              <div class="count-input-block">
+                                  <input type="number" class="form-control text-center" value="1">
+                              </div>
+                              <div class="btn-block">
+                                  <a href="#" class="btn btn-rounded btn-outlined--primary">Add to cart</a>
+                              </div>
+                          </form>
+                          <!-- Sharing Block 2 -->
+                          <div class="share-block-2 mt--30">
+                              <h4>SHARE THIS PRODUCT</h4>
+                              <ul class="social-btns social-btns-3">
+                                  <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                  <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                                  <li><a href="#" class="google"><i class="fab fa-google-plus-g"></i></a></li>
+                                  <li><a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                  </li>
+                                  <li><a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>';
+}
+
+echo $output;
+
+
 }
 
 ?>

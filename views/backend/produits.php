@@ -136,32 +136,6 @@
         </div>
         </div>
       </section>
-      <?php require './footerContent.php'; ?>
-    </div>
-
-    <?php require './script.php' ?>
-    <!-- Main File-->
-    <!-- <script src="js/front.js"></script> -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#search_text").keyup(function(){
-                var search = $(this).val();
-                $.ajax({
-                    url:'../../public/util/processProd.php',
-                    method:'get',
-                    data:{query:search},
-                    success:function(response){
-                      console.log("response: " + response);
-
-                        $("#table_data").html(response);
-                    },
-                    error:function(response){
-                        alert(response);
-                        console.log('reponse:'+ response);
-                    }
-                });
-            });
-        });
-  </script>
-  </body>
-</html>
+      <?php require './footer.php'; ?>
+      <script type="text/javascript" src="js/liverSearchProd.js">
+       </script>

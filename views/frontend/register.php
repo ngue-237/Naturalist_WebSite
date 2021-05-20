@@ -1,5 +1,4 @@
 <?php 
-
 include '../../controllers/produits/cathegorieProd.php';
 include '../../controllers/produits/animalProdController.php';
 include '../../controllers/produits/produitsController.php';
@@ -24,7 +23,6 @@ $total1=0;
 foreach ($tab_univ as $key => $produit){
   $total1=$total1+($produit['quantity']*$produit['prix']);
 }
-
 ?>
 
 
@@ -56,7 +54,7 @@ foreach ($tab_univ as $key => $produit){
                       $pathImage = $localFile . strtolower(str_replace(' ', '',$_POST["nomReg"]) . '.' . $file['extension']);
                       move_uploaded_file($_FILES['imageReg']['tmp_name'], $pathImage);
                       
-                      $user = new Utilisateur(1, $_POST['nomReg'], $_POST['passReg'], $_POST['emailReg'],(int) $_POST['typeReg'] -1, $pathImage);
+                      $user = new Utilisateur(100, $_POST['nomReg'], $_POST['passReg'], $_POST['emailReg'],(int) $_POST['typeReg'] -1, $pathImage);
 
                      
 
@@ -64,25 +62,27 @@ foreach ($tab_univ as $key => $produit){
 
                        ini_set("SMTP","smtp.gmail.com");
                        ini_set("sendmail_from","naturalist2a6@gmail.com");
-                       ini_set("smtp_port",587);
+                       ini_set("smtp_port",3306);
                        $subject = "Confirmation d'Inscription";
                        $message = 'Cher '.$_POST['nomReg'].',
                                    Vous etes desormais inscrit dans notre site web Naturalia';
                        $head = 'From:naturalist2a6@gmail.com' . "\r\n" .
                                   'Reply-To: $email' . "\r\n" .
                                   'X-Mailer: PHP/' . phpversion();
-                      if(mail($_POST['emailReg'], $subject, $message, $head))
-                         {
-                        
+                      (mail($_POST['emailReg'], $subject, $message, $head));
+                       
                          $userC->ajouterUtilisateur($user);
                          $_SESSION['nom']  = $_POST["nomReg"];
+                        
+                        
+
+            
+                        
+            
+                         $_SESSION['image'] = $_POST["imageReg"];
+            
+            
                          header('Location: index.php');
-                         }
-                       else 
-                         {
-                          echo "Échec de l'envoi de l'email...";
-                         }
-         
                               
                        
                     }
@@ -102,7 +102,7 @@ foreach ($tab_univ as $key => $produit){
 <body class="">
 	<div class="site-wrapper">
 	
-<?php include 'tete.php'; ?>
+  <?php include 'tete.php'; ?>
 								
 
 
@@ -121,12 +121,11 @@ foreach ($tab_univ as $key => $produit){
 	 <main class="page-section pb--10 pt--50">
 		<div class="container">
 			<header class="entry-header">
-				<h1 class="entry-title">My Account</h1>
+				<h1 class="entry-title titre1">S'INSCRIRE</h1>
 			</header>
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-					<form action="" method="post" enctype="multipart/form-data">
-						<h4 class="login-title">Register</h4>
+					<form action="" class="form-size1" method="post" enctype="multipart/form-data">
 						<div class="login-form">
 							<div class="row">
 								<div class="col-md-12 col-12 mb--20">
@@ -172,9 +171,10 @@ foreach ($tab_univ as $key => $produit){
 <script src="js/plugins.js"></script>
 <script src="js/ajax-mail.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo"></script>
+<script src="js/autocompleteSearch.js" type="text/javascript"></script>
 
 <script src="js/custom.js"></script>
-  <script>
+  
 var myInput = document.getElementById("psw");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");

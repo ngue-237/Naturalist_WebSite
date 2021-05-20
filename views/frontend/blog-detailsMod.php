@@ -11,7 +11,14 @@ $cathProd = new CathProdController();
 $animalProd = new AnimalProdController();
 ?>
 
-
+<?php 
+   
+    require_once '../../controllers/utilisateurs/SujetFmC.php';
+   
+   require_once '../../controllers/utilisateurs/UtilisateurC.php';
+   
+    $userC = new UtilisateurC();
+?>
 
 <?php require './header.php'; ?>
 <nav aria-label="breadcrumb" class="breadcrumb-wrapper">
@@ -80,7 +87,7 @@ foreach ($row as $ms) {
         
     </div>
 </div>
-<h3>3 Comments</h3>
+<h3>Comments</h3>
 <?PHP
 
 
@@ -94,12 +101,25 @@ foreach ($row as $ms) {
     
     <div class="single-comment">
   <div class="comment-avatar">
-    <img src="image/icon-logo/author-logo.png" alt="">
+    <img src="<?php echo $userC->recupererUtilisateur1($comm['id_user'])['image']; ?>" alt="">
   </div>
   <div class="comment-text">
-    <h5 class="author">  <?= $comm['nom'];?></h5>
+    <h5 class="author"> <?php echo $userC->recupererUtilisateur1($comm['id_user'])['nom']; ?></h5>
     <span class="time"><?= $comm['date'];?></span>
     <p> <?= $comm['contenu'];?></p>
+  <?php
+  if ( empty( $_SESSION['id'] )){
+
+  } 
+
+   else{if( $comm['id_user']==$_SESSION['id'] ): ?>
+    <a href="../../public/util/processCommentaire.php?delete1=<?php echo $comm['id_commentaire']?>&idBlog=<?php echo $id_comm; ?>">
+                          <i class="fas fa-trash-alt"></i>  
+                      </a>
+                      
+  <?php  endif ; 
+  }?>
+  
   </div>
   
 </div>
@@ -109,6 +129,11 @@ foreach ($row as $ms) {
 </div>
 
 <div class="replay-form-wrapper single-block">
+    <?php if ( empty( $_SESSION['id'] )){
+
+} 
+
+else{ ?>
     <h3 class="mt-0">LEAVE A REPLY</h3>
     <p>Your email address will not be published. Required fields are marked *</p>
     <form  action="../../public/util/processCommentaire.php?" method="post" class="blog-form">
@@ -122,22 +147,17 @@ foreach ($row as $ms) {
         <textarea type="text" name="contenu" cols="30" rows="10" class="form-control"></textarea>
       </div>
     </div>
+    
     <div class="col-lg-4">
       <div class="form-group">
-        <label for="name">Name </label>
-        <input type="text" name="nom" class="form-control">
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="text" name="email" class="form-control">
+        <label for="email"></label>
+        <input type="hidden" name="id_user" value=<?php echo $_SESSION['id']; ?> class="form-control">
       </div>
     </div>
     <div class="col-lg-4">
       <div class="form-group">
         <label for="website"></label>
-        <input type="hidden" name="id_du_blog" value=<?php echo $id_comm; ?> class="form-control">
+        <input type="hidden" name="id_du_blog" value=<?php echo $id_comm;?>  class="form-control">
       </div>
     </div>
     <div class="col-lg-4">
@@ -146,10 +166,14 @@ foreach ($row as $ms) {
     </div>
   </div>
 </form>
+<?php } ?>
+ 
 </div>
 			
 			</div>
-							
+      <?php if ( empty( $_SESSION['id'] )){?>	
+        <h4><i><center> Veuillez vous connecter pour pouvoir ajouter un commentaire*</center></i></h4>	
+        <?php }; ?>	
 		</div>
 	</div>
 </section>
