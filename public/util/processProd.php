@@ -20,7 +20,7 @@ if(isset($_POST['ajouterProd'])){
     || empty($_POST['prixV'])){
         $_SESSION['message'] ="some information missing!";
         $_SESSION['msg_type'] = "warning";
-        header("location:../../views/backend/ajouterProduits.php");
+        header("location:../../views/backend/ajouterProduits.php?page=1");
     }else{
         
         $desgn = test_input($_POST['designationProd']);
@@ -39,7 +39,7 @@ if(isset($_POST['ajouterProd'])){
         $_SESSION['message'] ="record has been saved!";
         $_SESSION['msg_type'] = "success";
 
-        header("location:../../views/backend/ajouterProduits.php");
+        header("location:../../views/backend/ajouterProduits.php?page=1");
     }
 }
 
@@ -49,7 +49,7 @@ if(isset($_GET['delete'])){
     $prodCtrl->deleteProd($idProd);
     $_SESSION['message'] = "record has been deleted !";
     $_SESSION['msg_type'] = "danger";
-    header("location:../../views/backend/produits.php");
+    header("location:../../views/backend/produits.php?page=1");
 }
 
 if(isset($_GET['edit'])){
@@ -68,16 +68,14 @@ if(isset($_GET['edit'])){
         $idProduit = $row1['id_produit'];
     }
 
-    header("location:../../views/backend/ajouterProduits.php?desgn=".$designation."&cath=".$cath."&update=".$update."&idProd=".$idProduit."&marq=".$marq."&descProd=".$descProd."&prixV=".$prixV."&prixA=".$prixA."&qtite=".$qtiteS." ");
+    header("location:../../views/backend/ajouterProduits.php?page=1?desgn=".$designation."&cath=".$cath."&update=".$update."&idProd=".$idProduit."&marq=".$marq."&descProd=".$descProd."&prixV=".$prixV."&prixA=".$prixA."&qtite=".$qtiteS." ");
 }
 
     if(isset($_POST['modifierProd'])){
         var_dump($_POST);
-        //die("juste quelque infos");
 
         $desgnM = test_input($_POST['designationProd']);
         $cathgM = test_input($_POST['cathg']);
-        
         $marqM=  test_input($_POST['marque']);
         $qtiteSM = test_input($_POST['qtiteStock']);
         $prixAM = test_input($_POST['prixA']);
@@ -89,16 +87,13 @@ if(isset($_GET['edit'])){
         $produit = new Produits($desgnM, $descrpM, $marqM, $cathgM, $imgM, $qtiteSM, $prixAM, $prixVM);
         $prodCtrl->updateProd($produit, $idProdM);
 
-        header("location:../../views/backend/produits.php");
+        header("location:../../views/backend/produits.php?page=1");
     }
 
-    $output =$result= "";
-    if(isset($_GET['query'])){
+$output =$result= "";
+if(isset($_GET['query'])){
         $search = $_GET['query'];
         $result = $prodCtrl->liveSearch($search);
-        // var_dump($result);
-
-        // die("manger");
 }
 else{
     $result = $prodCtrl->getAllProd($_GET['page']);
@@ -129,10 +124,10 @@ if(count($result)>0){
                 <td> ".$result['prix_achat']."</td>
                 <td> ".$result['prix_vente']."</td>
                 <td>
-                    <a href='../../public/util/processAnimaux.php?delete=".$result['id_produit']."'>
+                    <a href='../../public/util/processProd.php?delete=".$result['id_produit']."'>
                         <i class=far fa-edit'></i>
                     </a>
-                    <a href='../../public/util/processAnimaux.php?delete=".$result['id_produit']."'>
+                    <a href='../../public/util/processProd.php?delete=".$result['id_produit']."'>
                         <i class='fas fa-trash-alt' style='color:#33b35a'></i>  
                     </a>
                 </td>
@@ -144,4 +139,6 @@ if(count($result)>0){
 }else{
     echo "<h3>Not record found</h3>";
 }
+
+
 ?>

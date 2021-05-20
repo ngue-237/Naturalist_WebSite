@@ -31,7 +31,8 @@ if(isset($_POST['ajouterAniProd'])){
     if(empty($_POST['typeAnimal'])){
         $_SESSION['message'] = "some informations missing";
         $_SESSION['msg_type'] = "warning";
-        header("location:../../views/backend/animalProd.php");
+        $_SESSION['time'] = time();
+        header("location:../../views/backend/animalProd.php?page=1");
     }else{
         $animalProd = new AnimalProd($typeAnimal);
         $animalControler->ajouterAnimalProd($animalProd);
